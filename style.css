@@ -20,19 +20,7 @@ text-align: center;
 background-color: aliceblue;
 height: 100%;
 }
-.cartao{
-    margin: 1rem 1rem;
-background-color: brown;
-height: 20rem;
-flex-grow: 1;
-flex-basis: calc(33% - 6rem);
-}
 
-.cartao_conteudo {
-text-align: center;
-background-color: aliceblue;
-height: 100%;
-}
 
 
 
