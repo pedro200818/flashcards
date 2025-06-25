@@ -1,45 +1,93 @@
+:root {
+  --text-color: #f1f5f9;
+  --card-front-color: #1e3a8a;
+  --card-back-color: #0ea5e9;
+  --background: #0f172a;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    background-color: white;
-    font-family: bai jamjuree;
+  font-family: 'Bai Jamjuree', sans-serif;
+  background-color: var(--background);
+  color: var(--text-color);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+h1 {
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
 }
 
 #container {
-display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
 }
 
-.cartao{
-    margin: 1rem 1rem;
-background-color: brown;
-height: 20rem;
-flex-grow: 1;
-flex-basis: calc(33% - 6rem);
+.cartao {
+  perspective: 1000px;
 }
 
-.cartao_conteudo {
-text-align: center;
-background-color: aliceblue;
-height: 100%;
+.cartao__conteudo {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  text-align: center;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+  border-radius: 1rem;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+  cursor: pointer;
 }
 
+.cartao.active .cartao__conteudo {
+  transform: rotateY(180deg);
+}
 
+.cartao__conteudo__pergunta,
+.cartao__conteudo__resposta {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.cartao__conteudo__pergunta {
+  background-color: var(--card-front-color);
+}
 
+.cartao__conteudo__resposta {
+  background-color: var(--card-back-color);
+  transform: rotateY(180deg);
+}
 
-
-
-
+.cartao__conteudo__pergunta h3,
+.cartao__conteudo__resposta h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
 
 footer {
-background-color: rgb(131, 124, 124);
-color:white ;
-position: fixed;
-bottom: 0;
-width: 100%;
-height: 1rem;
-}
-
-footer p {
-    text-align: center;
-    font-size: 0.65rem;
-    margin-top: 0.5rem;
+  margin-top: auto;
+  padding: 1rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #94a3b8;
 }
