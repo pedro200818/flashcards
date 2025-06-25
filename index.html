@@ -1,11 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Flashcards</title>
-  <link rel="stylesheet" href="style.css" />
   <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --text-color: #f1f5f9;
+      --card-front-color: #1e3a8a;
+      --card-back-color: #0ea5e9;
+      --background: #0f172a;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Bai Jamjuree', sans-serif;
+      background-color: var(--background);
+      color: var(--text-color);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem;
+    }
+
+    h1 {
+      margin-bottom: 2rem;
+      font-size: 2.5rem;
+    }
+
+    #container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    .cartao {
+      perspective: 1000px;
+    }
+
+    .cartao__conteudo {
+      position: relative;
+      width: 100%;
+      height: 300px;
+      text-align: center;
+      transition: transform 0.6s;
+      transform-style: preserve-3d;
+      border-radius: 1rem;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      cursor: pointer;
+    }
+
+    .cartao.active .cartao__conteudo {
+      transform: rotateY(180deg);
+    }
+
+    .cartao__conteudo__pergunta,
+    .cartao__conteudo__resposta {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      border-radius: 1rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .cartao__conteudo__pergunta {
+      background-color: var(--card-front-color);
+    }
+
+    .cartao__conteudo__resposta {
+      background-color: var(--card-back-color);
+      transform: rotateY(180deg);
+    }
+
+    .cartao__conteudo__pergunta h3,
+    .cartao__conteudo__resposta h3 {
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 1rem;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #94a3b8;
+    }
+  </style>
 </head>
 <body>
   <h1>Flashcards</h1>
@@ -115,6 +209,14 @@
     </div>
   </div>
   <footer>Feito por Pedro</footer>
-  <script src="script.js"></script>
+
+  <script>
+    const cards = document.querySelectorAll('.cartao');
+    cards.forEach(card => {
+      card.addEventListener('click', () => {
+        card.classList.toggle('active');
+      });
+    });
+  </script>
 </body>
 </html>
